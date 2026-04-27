@@ -233,4 +233,9 @@ public class StudentDao extends Dao {
 			return false;
 		}
 	}
+
+	public void update(Student student) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 }

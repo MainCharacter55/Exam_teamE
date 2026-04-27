@@ -128,8 +128,25 @@ public class SubjectDao extends Dao {
         return count > 0;
     }
 
-	public void update(Subject subject) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
+    public boolean update(Subject subject) throws Exception {
+
+        Connection con = getConnection();
+
+        PreparedStatement st = con.prepareStatement(
+            "UPDATE SUBJECT SET NAME = ? WHERE CD = ? AND SCHOOL_CD = ?"
+        );
+
+        st.setString(1, subject.getName());
+        st.setString(2, subject.getCd());
+        st.setString(3, subject.getSchool().getCd());
+
+        int count = st.executeUpdate();
+
+        System.out.println("update count = " + count);
+
+        st.close();
+        con.close();
+
+        return count > 0;
+    }
 }
