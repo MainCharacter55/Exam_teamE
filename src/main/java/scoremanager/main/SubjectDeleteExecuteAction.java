@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class SubjectDeleteAction extends Action {
+public class SubjectDeleteExecuteAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -20,12 +20,14 @@ public class SubjectDeleteAction extends Action {
 
         String cd = request.getParameter("cd");
 
+        Subject subject = new Subject();
+        subject.setCd(cd);
+        subject.setSchool(school);
+
         SubjectDao dao = new SubjectDao();
-        Subject subject = dao.get(cd, school);
+        dao.delete(subject);
 
-        request.setAttribute("subject", subject);
-
-        request.getRequestDispatcher("subject_delete.jsp").forward(request, response);
+        response.sendRedirect("SubjectList.action");
         return null;
     }
 }
