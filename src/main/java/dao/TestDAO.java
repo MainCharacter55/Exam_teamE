@@ -64,4 +64,9 @@ public class TestDAO {
         // connectionは未使用（簡易版）
         return allTests.add(test);
     }
+
+	public Test getTest(String studentNo, String subjectCd, String schoolCd, int no) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }

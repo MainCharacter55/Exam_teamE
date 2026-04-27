@@ -2,13 +2,12 @@ package scoremanager.main;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import tool.Action;
 
 public class MenuAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
 		//なし
@@ -30,5 +29,6 @@ public class MenuAction extends Action {
 
 		//JSPへフォワード 7
 		req.getRequestDispatcher("menu.jsp").forward(req, res);
+		return null;
 	}
 }

@@ -127,4 +127,9 @@ public class SubjectDao extends Dao {
         }
         return count > 0;
     }
+
+	public void update(Subject subject) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 }

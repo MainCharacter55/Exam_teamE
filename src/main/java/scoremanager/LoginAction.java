@@ -2,13 +2,12 @@ package scoremanager;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import tool.Action;
 
 public class LoginAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse res)
+	public String execute(HttpServletRequest req, HttpServletResponse res)
 			throws Exception {
 		//ローカル変数の宣言 1
 		//なし
@@ -24,5 +23,6 @@ public class LoginAction extends Action {
 		//なし
 		//JSPへフォワード 7
 		req.getRequestDispatcher("login.jsp").forward(req, res);
+		return null;
 	}
 }

@@ -13,7 +13,7 @@ import tool.Action;
 
 public class StudentCreateAction extends Action {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
@@ -35,5 +35,6 @@ public class StudentCreateAction extends Action {
 
         // JSPへフォワード
         request.getRequestDispatcher("student_create.jsp").forward(request, response);
+		return null;
     }
 }

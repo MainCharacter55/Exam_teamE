@@ -3,19 +3,18 @@ package scoremanager;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Teacher;
+import dao.TeacherDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import bean.Teacher;
-import dao.TeacherDao;
 import tool.Action;
 
 
 public class LoginExecuteAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
 		String url = "";
@@ -60,6 +59,7 @@ public class LoginExecuteAction extends Action {
 			url = "login.jsp";
 			req.getRequestDispatcher(url).forward(req, res);
 		}
+		return password;
 
 	}
 

@@ -13,7 +13,7 @@ import tool.Action;
 
 public class StudentUpdateAction extends Action {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
@@ -34,5 +34,6 @@ public class StudentUpdateAction extends Action {
 
         // 変更画面へフォワード
         request.getRequestDispatcher("student_update.jsp").forward(request, response);
+		return no;
     }
 }

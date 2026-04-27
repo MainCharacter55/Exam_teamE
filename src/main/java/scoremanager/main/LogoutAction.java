@@ -3,13 +3,12 @@ package scoremanager.main;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import tool.Action;
 
 public class LogoutAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse res)
+	public String execute(HttpServletRequest req, HttpServletResponse res)
 			throws Exception {
 		//ローカル変数の宣言 1
 		String url = "";
@@ -35,6 +34,7 @@ public class LogoutAction extends Action {
 		//JSPへフォワード 7
 		url = "logout.jsp";
 		req.getRequestDispatcher(url).forward(req, res);
+		return url;
 	}
 
 }

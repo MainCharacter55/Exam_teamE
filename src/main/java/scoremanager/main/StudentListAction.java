@@ -17,7 +17,7 @@ import tool.Action;
 
 public class StudentListAction extends Action {
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(); //セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		
@@ -75,5 +75,6 @@ public class StudentListAction extends Action {
 		request.setAttribute("ent_year_set", entYearSet);
 		
 		request.getRequestDispatcher("student_list.jsp").forward(request, response);
+		return isAttendStr;
 	}
 }

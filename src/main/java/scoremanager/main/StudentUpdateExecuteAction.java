@@ -8,7 +8,10 @@ import tool.Action;
 
 public class StudentUpdateExecuteAction extends Action {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         // フォームから変更後の値を取得
         String no = request.getParameter("no");
         String name = request.getParameter("name");
@@ -31,5 +34,6 @@ public class StudentUpdateExecuteAction extends Action {
 
         // 完了画面へフォワード
         request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
+		return classNum;
     }
 }
