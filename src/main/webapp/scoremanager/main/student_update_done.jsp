@@ -5,9 +5,9 @@
     <c:param name="content">
         <section class="me-4">
             <h2 class="h3 mb-3 fw-norma">学生情報変更</h2>
-            <p>変更が完了しました。</p>
+            <p class="text-center" style="background-color:#66CC99">変更が完了しました。</p>
             <div class="mt-3">
-                <a href="StudentList.action" class="btn btn-primary">学生一覧へ戻る</a>
+                <a href="StudentList.action">学生一覧</a>
             </div>
         </section>
     </c:param>

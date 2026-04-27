@@ -31,6 +31,6 @@ public class StudentUpdateExecuteAction extends Action {
 
         // 完了画面へフォワード
         request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
-		return classNum;
+		return null;
     }
 }

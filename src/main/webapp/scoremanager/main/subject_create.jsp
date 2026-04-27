@@ -4,7 +4,7 @@
     <c:param name="title">得点管理システム</c:param>
     <c:param name="content">
         <section class="me-4">
-            <h2 class="h3 mb-3 fw-normal">科目情報登録</h2>
+            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
             
             <c:if test="${!empty error}">
                 <div class="text-danger mb-3">${error}</div>
@@ -14,8 +14,10 @@
                 <div class="mb-3">
                     <label class="form-label" for="subject-cd-input">科目コード</label>
                     <input class="form-control" type="text" id="subject-cd-input" name="cd" 
-                           placeholder="科目コードを入力してください" maxlength="3" required>
-                    <div class="form-text">3文字以内で入力してください</div>
+                           placeholder="科目コードを入力してください" minlength="3" maxlength="3" required>
+                    <c:if test="${!empty errors.get('no')}">
+                        <div class="text-danger small">${errors.get("no")}</div>
+                    </c:if>
                 </div>
                 
                 <div class="mb-3">

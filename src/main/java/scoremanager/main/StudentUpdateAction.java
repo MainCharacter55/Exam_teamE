@@ -34,6 +34,6 @@ public class StudentUpdateAction extends Action {
 
         // 変更画面へフォワード
         request.getRequestDispatcher("student_update.jsp").forward(request, response);
-		return no;
+		return null;
     }
 }

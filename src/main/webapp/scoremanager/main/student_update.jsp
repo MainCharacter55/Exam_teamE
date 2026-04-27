@@ -13,7 +13,7 @@
                 <div class="alert alert-danger">${error}</div>
             </c:if>
 
-            <form action="StudentUpdate.action" method="post">
+            <form action="StudentUpdateExecute.action" method="post">
 
                 <!-- 学生番号（hiddenで必ず送る） -->
                 <input type="hidden" name="no" value="${student.no}">
@@ -25,12 +25,12 @@
 
                 <div class="mb-3">
                     <label class="form-label">学生番号</label>
-                    <input class="form-control" type="text" value="${student.no}" readonly>
+                    <p>${student.no}</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">氏名</label>
-                    <input class="form-control" type="text" name="name" value="${student.name}" required>
+                    <input class="form-control" type="text" name="name" value="${student.name}" maxlength="10" required>
                 </div>
 
                 <div class="mb-3">
