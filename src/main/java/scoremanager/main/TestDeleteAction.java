@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import bean.Test;
-import dao.TestDao;
+import dao.TestDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,7 +25,7 @@ public class TestDeleteAction extends HttpServlet {
             int no = Integer.parseInt(request.getParameter("no"));
             String schoolCd = (String) request.getSession().getAttribute("schoolCd");
 
-            TestDao dao = new TestDao(con);
+            TestDAO dao = new TestDAO();
             Test test = dao.getTest(studentNo, subjectCd, schoolCd, no);
 
             request.setAttribute("test", test);

@@ -13,7 +13,7 @@ import tool.Action;
 
 public class StudentCreateExecuteAction extends Action {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
@@ -57,5 +57,6 @@ public class StudentCreateExecuteAction extends Action {
             // StudentCreateActionの処理を再度呼び出すか、直接JSPへ
             new StudentCreateAction().execute(request, response);
         }
+		return classNum;
     }
 }

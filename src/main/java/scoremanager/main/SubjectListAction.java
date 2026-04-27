@@ -13,7 +13,7 @@ import tool.Action;
 public class SubjectListAction extends Action {
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // セッションからログインユーザー情報を取得
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
@@ -27,5 +27,6 @@ public class SubjectListAction extends Action {
 
         // JSPへフォワード
         request.getRequestDispatcher("subject_list.jsp").forward(request, response);
+		return null;
     }
 }
