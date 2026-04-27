@@ -11,23 +11,28 @@
             </c:if>
 
             <form action="SubjectCreateExecute.action" method="post">
-                <div class="mb-3">
-                    <label class="form-label" for="subject-cd-input">科目コード</label>
-                    <input class="form-control" type="text" id="subject-cd-input" name="cd" 
-                           placeholder="科目コードを入力してください" minlength="3" maxlength="3" required>
-                    <c:if test="${!empty errors.get('no')}">
-                        <div class="text-danger small">${errors.get("no")}</div>
-                    </c:if>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label" for="subject-name-input">科目名</label>
-                    <input class="form-control" type="text" id="subject-name-input" name="name" 
-                           placeholder="科目名を入力してください" required>
-                </div>
-                
-                <button class="btn btn-primary" type="submit">登録</button>
-            </form>
+			    <div class="mb-3">
+			        <label class="form-label" for="subject-cd-input">科目コード</label>
+			        <%-- value="${cd}" を追加して入力を保持 --%>
+			        <input class="form-control" type="text" id="subject-cd-input" name="cd" 
+			               placeholder="科目コードを入力してください" value="${cd}" 
+			               minlength="3" maxlength="3" required>
+			        
+			        <%-- errors.cd に修正して、JavaのMapからメッセージを取得 --%>
+			        <c:if test="${!empty errors.get('cd')}">
+			            <div class="text-danger small mt-1">${errors.get("cd")}</div>
+			        </c:if>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label" for="subject-name-input">科目名</label>
+			        <%-- value="${name}" を追加して入力を保持 --%>
+			        <input class="form-control" type="text" id="subject-name-input" name="name" 
+			               placeholder="科目名を入力してください" value="${name}" required>
+			    </div>
+			    
+			    <button class="btn btn-primary" type="submit">登録</button>
+			</form>
             
             <div class="mt-3">
                 <a href="SubjectList.action">戻る</a>

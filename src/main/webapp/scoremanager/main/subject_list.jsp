@@ -39,9 +39,6 @@
                 </c:otherwise>
             </c:choose>
             
-            <div class="mt-3">
-                <a href="Menu.action">メニューに戻る</a>
-            </div>
         </section>
     </c:param>
 </c:import>

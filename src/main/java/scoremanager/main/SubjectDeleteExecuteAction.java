@@ -27,7 +27,7 @@ public class SubjectDeleteExecuteAction extends Action {
         SubjectDao dao = new SubjectDao();
         dao.delete(subject);
 
-        response.sendRedirect("SubjectList.action");
+        request.getRequestDispatcher("subject_delete_done.jsp").forward(request, response);
         return null;
     }
 }
