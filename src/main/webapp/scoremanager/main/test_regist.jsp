@@ -10,7 +10,7 @@
 
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績登録</h2>
 
-            <form action="TestRegist.action" method="post" class="px-4">
+            <form action="TestRegistExecute.action" method="post" class="px-4">
 
                 <div class="mb-3">
                     <label class="form-label">学生番号</label>
@@ -42,7 +42,7 @@
                 </div>
 
                 <button class="btn btn-primary">登録</button>
-                <a href="TestList" class="ms-3">戻る</a>
+                <a href="StudentList.action" class="ms-3">戻る</a>
 
             </form>
 
