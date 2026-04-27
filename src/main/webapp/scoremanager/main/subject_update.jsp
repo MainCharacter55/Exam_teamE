@@ -1,32 +1,40 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<%@include file="../header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h2>科目変更</h2>
+<c:import url="../../common/base.jsp">
+    <c:param name="title">得点管理システム</c:param>
+    <c:param name="content">
 
-<form action="SubjectUpdate.action" method="post">
+        <section class="me-4">
+            <h2 class="h3 mb-3 fw-normal">科目情報変更</h2>
 
-    <div>
-        <label>科目コード</label><br>
-        <input type="text" name="cd" value="${cd}" readonly>
-    </div>
+            <!-- エラー表示 -->
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">${error}</div>
+            </c:if>
 
-    <br>
+            <form action="SubjectUpdate.action" method="post">
 
-    <div>
-        <label>科目名</label><br>
-        <input type="text" name="name" value="${name}" maxlength="20" required>
-    </div>
+                <!-- 科目コード（必ず送る） -->
+                <input type="hidden" name="cd" value="${cd}">
 
-    <br>
+                <div class="mb-3">
+                    <label class="form-label">科目コード</label>
+                    <input class="form-control" type="text" value="${cd}" readonly>
+                </div>
 
-    <div>
-        <input type="submit" value="変更">
-    </div>
+                <div class="mb-3">
+                    <label class="form-label">科目名</label>
+                    <input class="form-control" type="text" name="name" value="${name}" required>
+                </div>
 
-</form>
+                <button class="btn btn-primary" type="submit">変更</button>
+            </form>
 
-<br>
+            <div class="mt-3">
+                <a href="SubjectList.action">戻る</a>
+            </div>
+        </section>
 
-<a href="SubjectList.action">戻る</a>
-
-<%@include file="../footer.jsp" %>
+    </c:param>
+</c:import>

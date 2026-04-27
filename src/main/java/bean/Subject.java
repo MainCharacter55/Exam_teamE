@@ -27,4 +27,8 @@ public class Subject implements Serializable {
     public void setSchool(School school) {
         this.school = school;
     }
+	public boolean isAttend() {
+		// TODO 自動生成されたメソッド・スタブ
+		return false;
+	}
 }
