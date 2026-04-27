@@ -6,17 +6,21 @@ public class ClassNum implements Serializable {
 	
 	/**
 	 * 	クラス名:class_num
+	 * ckass
 	 */
-	private String class_num;
+	
 	
 	/**
 	 * 学校:School
 	 */
-	private School school;
+	
 	
 	/**
 	 * ゲッター・セッター
 	 */
+	private String class_num;
+	private School school;
+	
 	
 	public School getSchool() {
 		return school;

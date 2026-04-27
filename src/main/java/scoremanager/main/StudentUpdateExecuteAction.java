@@ -1,19 +1,14 @@
 package scoremanager.main;
 
 import bean.Student;
-import bean.Teacher;
 import dao.StudentDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
 public class StudentUpdateExecuteAction extends Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HttpSession session = request.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
-
         // フォームから変更後の値を取得
         String no = request.getParameter("no");
         String name = request.getParameter("name");
