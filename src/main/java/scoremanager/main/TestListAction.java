@@ -8,7 +8,7 @@ import bean.StudentScoreList;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
-import dao.StudentScoreListDAO;
+import dao.StudentScoreListDao;
 import dao.SubjectDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,7 +43,7 @@ public class TestListAction extends Action {
         // 学生番号で検索
         String studentNo = request.getParameter("student_no");
         if (studentNo != null && !studentNo.isEmpty()) {
-            StudentScoreListDAO dao = new StudentScoreListDAO();
+            StudentScoreListDao dao = new StudentScoreListDao();
             List<StudentScoreList> scores = dao.findByStudentNo(studentNo);
             request.setAttribute("scores", scores);
             request.setAttribute("student_no", studentNo);
@@ -53,3 +53,4 @@ public class TestListAction extends Action {
         return null;
     }
 }
+

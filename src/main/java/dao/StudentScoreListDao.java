@@ -8,7 +8,7 @@ import java.util.List;
 
 import bean.StudentScoreList;
 
-public class StudentScoreListDAO {
+public class StudentScoreListDao extends Dao {
 
     public List<StudentScoreList> findByStudentNo(String studentNo) throws Exception {
 
@@ -56,12 +56,4 @@ public class StudentScoreListDAO {
         return list;
     }
 
-    // DB接続（あなたの環境に合わせて変更）
-    private Connection getConnection() throws Exception {
-        // 例：H2
-        Class.forName("org.h2.Driver");
-        return java.sql.DriverManager.getConnection(
-            "jdbc:h2:~/exam", "sa", ""
-        );
-    }
 }

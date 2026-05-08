@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import bean.Test;
-import dao.TestDAO;
+import dao.TestDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,7 +27,7 @@ public class TestDeleteAction extends HttpServlet {
             int no = (noParam != null && !noParam.isEmpty()) ? Integer.parseInt(noParam) : 0;
             String schoolCd = (String) request.getSession().getAttribute("schoolCd");
 
-            TestDAO dao = new TestDAO();
+            TestDao dao = new TestDao();
 
             // まず test_no で絞る
             List<Test> candidates = dao.filter(0, null, null, no, null);
