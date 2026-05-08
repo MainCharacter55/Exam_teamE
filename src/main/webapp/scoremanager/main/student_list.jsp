@@ -1,12 +1,9 @@
 <%-- 学生一覧JSP --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:import url="/common/base.jsp">
-	<c:param name="title">
-		得点管理システム
-	</c:param>
+	<c:param name="title">得点管理システム</c:param>
 
 	<c:param name="scripts"></c:param>
 
@@ -16,6 +13,7 @@
 			<div class="my-2 text-end px-4">
 				<a href="StudentCreate.action">新規登録</a>
 			</div>
+			
 			<form method="get">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-4">

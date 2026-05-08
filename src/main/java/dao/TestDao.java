@@ -78,7 +78,7 @@ public class TestDao extends Dao{
 	// Inside TestDao.java
 	public List<TestListSubject> filterTestListSubject(School school, int entYear, String classNum, String subjectCd) throws Exception {
 	    List<TestListSubject> list = new ArrayList<>();
-	    Connection connection = getConnection(); // Assuming you have this method from a base Dao
+	    Connection connection = getConnection();
 	    PreparedStatement statement = null;
 	    ResultSet rSet = null;
 

@@ -1,7 +1,10 @@
+<%-- test_list.jsp --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:import url="../../common/base.jsp">
     <c:param name="title">得点管理システム</c:param>
+    
     <c:param name="content">
         <section class="me-4">
             <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
@@ -17,6 +20,7 @@
                             </c:forEach>
                         </select>
                     </div>
+                    
                     <div class="col-2">
                         <label class="form-label">クラス</label>
                         <select class="form-select" name="f2">
@@ -26,6 +30,7 @@
                             </c:forEach>
                         </select>
                     </div>
+                    
                     <div class="col-3">
                         <label class="form-label">科目</label>
                         <select class="form-select" name="f3">
@@ -35,6 +40,7 @@
                             </c:forEach>
                         </select>
                     </div>
+                    
                     <div class="col-2">
                         <label class="form-label">回数</label>
                         <select class="form-select" name="f4">
@@ -43,6 +49,7 @@
                             <option value="2" <c:if test="${f4 == 2}">selected</c:if>>2</option>
                         </select>
                     </div>
+                    
                     <div class="col-2 text-center mt-4">
                         <button class="btn btn-secondary" type="submit">表示</button>
                     </div>
@@ -71,6 +78,7 @@
 			                        <th class="text-center">点数</th><%-- Item 7: Single score column --%>
 			                    </tr>
 			                </thead>
+			                
 			                <tbody>
 			                    <c:forEach var="test" items="${tests}">
 			                        <tr>
@@ -87,6 +95,7 @@
 			                </tbody>
 			            </table>
 			        </c:when>
+			        
 			        <c:otherwise>
 			            <div class="mt-3 ms-3">成績情報が存在しませんでした</div>
 			        </c:otherwise>
