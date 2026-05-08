@@ -32,9 +32,9 @@ public class TestRegistAction extends Action {
 		  List<Subject> subjectList = subjectDao.filter(teacher.getSchool());
 		  
 		  
-		  request.setAttribute("ent year set", entYearList);
-		  request.setAttribute("class num set", classNumList);
-		  request.setAttribute("subject set",subjectList);
+		  request.setAttribute("ent_year_set", entYearList);
+		  request.setAttribute("class_num_set", classNumList);
+		  request.setAttribute("subject_set", subjectList);
 		  
 		  request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 		  return null; 

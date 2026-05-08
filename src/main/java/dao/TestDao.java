@@ -74,6 +74,67 @@ public class TestDao extends Dao{
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	public void saveAll(List<Test> list) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement checkSt = null;
+		PreparedStatement updateSt = null;
+		PreparedStatement insertSt = null;
+
+		try {
+			connection.setAutoCommit(false);
+
+			checkSt  = connection.prepareStatement(
+				"SELECT COUNT(*) FROM test WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+			updateSt = connection.prepareStatement(
+				"UPDATE test SET point=? WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+			insertSt = connection.prepareStatement(
+				"INSERT INTO test (student_no, subject_cd, school_cd, no, point) VALUES (?,?,?,?,?)");
+
+			for (Test test : list) {
+				String studentNo = test.getStudent().getNo();
+				String subjectCd = test.getSubject().getCd();
+				String schoolCd  = test.getSchool().getCd();
+				int no    = test.getNo();
+				int point = test.getPoint();
+
+				checkSt.setString(1, studentNo);
+				checkSt.setString(2, subjectCd);
+				checkSt.setString(3, schoolCd);
+				checkSt.setInt(4, no);
+				ResultSet rs = checkSt.executeQuery();
+				rs.next();
+				boolean exists = rs.getInt(1) > 0;
+				rs.close();
+
+				if (exists) {
+					updateSt.setInt(1, point);
+					updateSt.setString(2, studentNo);
+					updateSt.setString(3, subjectCd);
+					updateSt.setString(4, schoolCd);
+					updateSt.setInt(5, no);
+					updateSt.executeUpdate();
+				} else {
+					insertSt.setString(1, studentNo);
+					insertSt.setString(2, subjectCd);
+					insertSt.setString(3, schoolCd);
+					insertSt.setInt(4, no);
+					insertSt.setInt(5, point);
+					insertSt.executeUpdate();
+				}
+			}
+
+			connection.commit();
+		} catch (Exception e) {
+			connection.rollback();
+			throw e;
+		} finally {
+			if (checkSt  != null) checkSt.close();
+			if (updateSt != null) updateSt.close();
+			if (insertSt != null) insertSt.close();
+			connection.close();
+		}
+	}
 	
 	// Inside TestDao.java
 	public List<TestListSubject> filterTestListSubject(School school, int entYear, String classNum, String subjectCd) throws Exception {
