@@ -41,7 +41,7 @@ public class StudentScoreListDao extends Dao {
         while (rs.next()) {
             StudentScoreList bean = new StudentScoreList();
 
-            bean.setStudentNo(rs.getString("STUDENT_NO"));
+            bean.setStudentNo(rs.getString("STUDENT_NO").trim());
             bean.setStudentName(rs.getString("STUDENT_NAME"));
             bean.setSubjectCd(rs.getString("SUBJECT_CD"));
             bean.setSubjectName(rs.getString("SUBJECT_NAME"));

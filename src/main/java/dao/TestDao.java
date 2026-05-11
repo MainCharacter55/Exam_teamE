@@ -71,25 +71,29 @@ public class TestDao extends Dao{
     }
 
 	public Test getTest(String studentNo, String subjectCd, String schoolCd, int no) throws Exception {
+		System.out.println("★ getTest: studentNo=" + studentNo + " subjectCd=" + subjectCd + " schoolCd=" + schoolCd + " no=" + no);
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		Test test = null;
 		try {
 			statement = connection.prepareStatement(
-				"SELECT * FROM test WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+				"SELECT * FROM test WHERE student_no=? AND subject_cd=? AND no=?");
 			statement.setString(1, studentNo);
 			statement.setString(2, subjectCd);
-			statement.setString(3, schoolCd);
-			statement.setInt(4, no);
+			statement.setInt(3, no);
 			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
+				System.out.println("★ getTest: row found, point=" + rs.getInt("point"));
 				SchoolDao schoolDao = new SchoolDao();
 				StudentDao studentDao = new StudentDao();
 				SubjectDao subjectDao = new SubjectDao();
 				School school = schoolDao.get(schoolCd);
 				Student student = studentDao.get(studentNo);
 				Subject subject = subjectDao.get(subjectCd, school);
+				System.out.println("★ getTest: school=" + school + " student=" + student + " subject=" + subject);
 				test = new Test(student, student.getClassNum(), subject, school, rs.getInt("no"), rs.getInt("point"));
+			} else {
+				System.out.println("★ getTest: NO ROW FOUND");
 			}
 			rs.close();
 		} finally {
@@ -105,11 +109,10 @@ public class TestDao extends Dao{
 		int count = 0;
 		try {
 			statement = connection.prepareStatement(
-				"DELETE FROM test WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+				"DELETE FROM test WHERE student_no=? AND subject_cd=? AND no=?");
 			statement.setString(1, studentNo);
 			statement.setString(2, subjectCd);
-			statement.setString(3, schoolCd);
-			statement.setInt(4, no);
+			statement.setInt(3, no);
 			count = statement.executeUpdate();
 		} finally {
 			if (statement != null) statement.close();
@@ -204,7 +207,7 @@ public class TestDao extends Dao{
 	        Map<String, TestListSubject> map = new HashMap<>();
 
 	        while (rSet.next()) {
-	            String sNo = rSet.getString("student_no");
+	            String sNo = rSet.getString("student_no").trim();
 	            TestListSubject ts = map.get(sNo);
 
 	            if (ts == null) {

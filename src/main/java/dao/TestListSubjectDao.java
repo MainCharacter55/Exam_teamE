@@ -26,7 +26,7 @@ public class TestListSubjectDao extends Dao {
 
         while (rSet.next()) {
 
-            String studentNo = rSet.getString("student_no");
+            String studentNo = rSet.getString("student_no").trim();
 
             // 学生が変わったら新しい TestListSubject を作成
             if (!studentNo.equals(currentStudentNo)) {

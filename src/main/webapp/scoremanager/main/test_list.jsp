@@ -9,6 +9,7 @@
 
             <%-- 科目情報検索 --%>
             <form action="TestList.action" method="get">
+                <input type="hidden" name="form_type" value="subject">
                 <div class="border mx-3 mb-2 py-3 px-3 rounded">
                     <div class="row align-items-end g-2">
                         <div class="col-auto fw-bold align-self-center">科目情報</div>
@@ -52,6 +53,7 @@
 
             <%-- 学生情報検索 --%>
             <form action="TestList.action" method="get">
+                <input type="hidden" name="form_type" value="student">
                 <div class="border mx-3 mb-3 py-3 px-3 rounded">
                     <div class="row align-items-end g-2">
                         <div class="col-auto fw-bold align-self-center">学生情報</div>
@@ -60,7 +62,8 @@
                             <label class="form-label">学生番号</label>
                             <input type="text" class="form-control" name="student_no"
                                    placeholder="学生番号を入力してください"
-                                   value="${searchType == 'student' ? student_no : ''}">
+                                   value="${searchType == 'student' ? student_no : ''}"
+                                   required>
                         </div>
 
                         <div class="col-auto">
@@ -78,6 +81,9 @@
                         <%-- 科目情報検索結果 --%>
                         <c:when test="${searchType == 'subject'}">
                             <c:choose>
+                                <c:when test="${subjectSearchError}">
+                                    <div class="mt-2 ms-3 text-warning fw-bold">入学年度とクラスと科目を選択してください</div>
+                                </c:when>
                                 <c:when test="${not empty tests}">
                                     <div class="ms-3 mb-2">科目：${subject_name}</div>
                                     <table class="table table-hover mx-3" style="width: calc(100% - 2rem);">
@@ -124,20 +130,23 @@
                                     </table>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="mt-3 ms-3">成績情報が存在しませんでした</div>
+                                    <div class="mt-3 ms-3">学生情報が存在しませんでした</div>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
 
                         <%-- 学生情報検索結果 --%>
                         <c:when test="${searchType == 'student'}">
+                            <c:if test="${not empty student}">
+                                <div class="ms-3 mb-2">氏名：${student.name} (${student_no})</div>
+                            </c:if>
                             <c:choose>
                                 <c:when test="${not empty scores}">
-                                    <div class="ms-3 mb-2">学生番号：${student_no}</div>
                                     <table class="table table-hover mx-3" style="width: calc(100% - 2rem);">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>科目</th>
+                                                <th>科目名</th>
+                                                <th>科目コード</th>
                                                 <th class="text-center">回数</th>
                                                 <th class="text-center">点数</th>
                                                 <th></th>
@@ -148,6 +157,7 @@
                                             <c:forEach var="score" items="${scores}">
                                                 <tr>
                                                     <td>${score.subjectName}</td>
+                                                    <td>${score.subjectCd}</td>
                                                     <td class="text-center">${score.testNo}</td>
                                                     <td class="text-center">${score.point}</td>
                                                     <td><a href="TestUpdate.action?student_no=${score.studentNo}&subject_cd=${score.subjectCd}&no=${score.testNo}">変更</a></td>
