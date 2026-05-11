@@ -4,6 +4,7 @@ public class StudentScoreList {
 
     private String studentNo;
     private String studentName;
+    private String subjectCd;
     private String subjectName;
     private int testNo;
     private int point;
@@ -23,6 +24,14 @@ public class StudentScoreList {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getSubjectCd() {
+        return subjectCd;
+    }
+
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
     }
 
     public String getSubjectName() {

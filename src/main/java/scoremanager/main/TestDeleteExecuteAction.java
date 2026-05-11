@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class TestDeleteAction extends Action {
+public class TestDeleteExecuteAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,9 +24,10 @@ public class TestDeleteAction extends Action {
 
         TestDao testDao = new TestDao();
         Test test = testDao.getTest(studentNo, subjectCd, school.getCd(), no);
+        testDao.delete(studentNo, subjectCd, school.getCd(), no);
 
         request.setAttribute("test", test);
-        request.getRequestDispatcher("test_delete.jsp").forward(request, response);
+        request.getRequestDispatcher("test_delete_done.jsp").forward(request, response);
         return null;
     }
 }

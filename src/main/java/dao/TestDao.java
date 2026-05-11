@@ -70,9 +70,52 @@ public class TestDao extends Dao{
         return allTests.add(test);
     }
 
-	public Test getTest(String studentNo, String subjectCd, String schoolCd, int no) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public Test getTest(String studentNo, String subjectCd, String schoolCd, int no) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		Test test = null;
+		try {
+			statement = connection.prepareStatement(
+				"SELECT * FROM test WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+			statement.setString(1, studentNo);
+			statement.setString(2, subjectCd);
+			statement.setString(3, schoolCd);
+			statement.setInt(4, no);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				SchoolDao schoolDao = new SchoolDao();
+				StudentDao studentDao = new StudentDao();
+				SubjectDao subjectDao = new SubjectDao();
+				School school = schoolDao.get(schoolCd);
+				Student student = studentDao.get(studentNo);
+				Subject subject = subjectDao.get(subjectCd, school);
+				test = new Test(student, student.getClassNum(), subject, school, rs.getInt("no"), rs.getInt("point"));
+			}
+			rs.close();
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+		return test;
+	}
+
+	public boolean delete(String studentNo, String subjectCd, String schoolCd, int no) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		int count = 0;
+		try {
+			statement = connection.prepareStatement(
+				"DELETE FROM test WHERE student_no=? AND subject_cd=? AND school_cd=? AND no=?");
+			statement.setString(1, studentNo);
+			statement.setString(2, subjectCd);
+			statement.setString(3, schoolCd);
+			statement.setInt(4, no);
+			count = statement.executeUpdate();
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+		return count > 0;
 	}
 
 	public void saveAll(List<Test> list) throws Exception {

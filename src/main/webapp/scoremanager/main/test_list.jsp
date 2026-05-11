@@ -98,8 +98,26 @@
                                                     <td>${test.classNum}</td>
                                                     <td>${test.studentNo}</td>
                                                     <td>${test.studentName}</td>
-                                                    <td class="text-center">${test.getPoint(1)}</td>
-                                                    <td class="text-center">${test.getPoint(2)}</td>
+                                                    <td class="text-center">
+                                                        <c:choose>
+                                                            <c:when test="${not empty test.getPoint(1)}">
+                                                                ${test.getPoint(1)}
+                                                                <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1" class="ms-1">変更</a>
+                                                                <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1" class="ms-1 text-danger">削除</a>
+                                                            </c:when>
+                                                            <c:otherwise>－</c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <c:choose>
+                                                            <c:when test="${not empty test.getPoint(2)}">
+                                                                ${test.getPoint(2)}
+                                                                <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-1">変更</a>
+                                                                <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-1 text-danger">削除</a>
+                                                            </c:when>
+                                                            <c:otherwise>－</c:otherwise>
+                                                        </c:choose>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -122,6 +140,8 @@
                                                 <th>科目</th>
                                                 <th class="text-center">回数</th>
                                                 <th class="text-center">点数</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,6 +150,8 @@
                                                     <td>${score.subjectName}</td>
                                                     <td class="text-center">${score.testNo}</td>
                                                     <td class="text-center">${score.point}</td>
+                                                    <td><a href="TestUpdate.action?student_no=${score.studentNo}&subject_cd=${score.subjectCd}&no=${score.testNo}">変更</a></td>
+                                                    <td><a href="TestDelete.action?student_no=${score.studentNo}&subject_cd=${score.subjectCd}&no=${score.testNo}" class="text-danger">削除</a></td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

@@ -17,16 +17,17 @@ public class StudentScoreListDao extends Dao {
         Connection con = getConnection();
 
         String sql = """
-            SELECT 
+            SELECT
                 s.NO AS STUDENT_NO,
                 s.NAME AS STUDENT_NAME,
+                t.SUBJECT_CD,
                 sub.NAME AS SUBJECT_NAME,
                 t.NO AS TEST_NO,
                 t.POINT
             FROM STUDENT s
             JOIN TEST t ON s.NO = t.STUDENT_NO
-            JOIN SUBJECT sub 
-                ON t.SUBJECT_CD = sub.CD 
+            JOIN SUBJECT sub
+                ON t.SUBJECT_CD = sub.CD
                 AND t.SCHOOL_CD = sub.SCHOOL_CD
             WHERE s.NO = ?
             ORDER BY sub.NAME, t.NO
@@ -42,6 +43,7 @@ public class StudentScoreListDao extends Dao {
 
             bean.setStudentNo(rs.getString("STUDENT_NO"));
             bean.setStudentName(rs.getString("STUDENT_NAME"));
+            bean.setSubjectCd(rs.getString("SUBJECT_CD"));
             bean.setSubjectName(rs.getString("SUBJECT_NAME"));
             bean.setTestNo(rs.getInt("TEST_NO"));
             bean.setPoint(rs.getInt("POINT"));
