@@ -21,7 +21,7 @@ public class TestUpdateAction extends Action {
         Teacher teacher = (Teacher) session.getAttribute("user");
  
         // パラメータ取得
-        String studentNo = request.getParameter("student_no");
+        String studentNo = request.getParameter("student_no").trim();
         String subjectCd  = request.getParameter("subject_cd");
         int no = Integer.parseInt(request.getParameter("no"));
  

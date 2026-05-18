@@ -95,6 +95,7 @@
                                                 <th>氏名</th>
                                                 <th class="text-center">1回</th>
                                                 <th class="text-center">2回</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -106,23 +107,25 @@
                                                     <td>${test.studentName}</td>
                                                     <td class="text-center">
                                                         <c:choose>
-                                                            <c:when test="${not empty test.getPoint(1)}">
-                                                                ${test.getPoint(1)}
-                                                                <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1" class="ms-1">変更</a>
-                                                                <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1" class="ms-1 text-danger">削除</a>
-                                                            </c:when>
+                                                            <c:when test="${not empty test.getPoint(1)}">${test.getPoint(1)}</c:when>
                                                             <c:otherwise>－</c:otherwise>
                                                         </c:choose>
                                                     </td>
                                                     <td class="text-center">
                                                         <c:choose>
-                                                            <c:when test="${not empty test.getPoint(2)}">
-                                                                ${test.getPoint(2)}
-                                                                <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-1">変更</a>
-                                                                <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-1 text-danger">削除</a>
-                                                            </c:when>
+                                                            <c:when test="${not empty test.getPoint(2)}">${test.getPoint(2)}</c:when>
                                                             <c:otherwise>－</c:otherwise>
                                                         </c:choose>
+                                                    </td>
+                                                    <td>
+                                                        <c:if test="${not empty test.getPoint(1)}">
+                                                            <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1">変更</a>
+                                                            <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=1" class="ms-1 text-danger">削除</a>
+                                                        </c:if>
+                                                        <c:if test="${not empty test.getPoint(2)}">
+                                                            <a href="TestUpdate.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-2">変更</a>
+                                                            <a href="TestDelete.action?student_no=${test.studentNo}&subject_cd=${f3}&no=2" class="ms-1 text-danger">削除</a>
+                                                        </c:if>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

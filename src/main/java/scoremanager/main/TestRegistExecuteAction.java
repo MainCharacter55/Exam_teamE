@@ -42,7 +42,7 @@ public class TestRegistExecuteAction extends Action {
             String pointStr = pointStrs[i];
             if (pointStr == null || pointStr.isEmpty()) continue;
 
-            Student student = studentDao.get(studentNos[i]);
+            Student student = studentDao.get(studentNos[i].trim());
             int point = Integer.parseInt(pointStr);
             testList.add(new Test(student, student.getClassNum(), subject, school, no, point));
         }

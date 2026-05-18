@@ -45,6 +45,9 @@
                             <option value="0">--------</option>
                             <option value="1" <c:if test="${f4 == 1}">selected</c:if>>1</option>
                             <option value="2" <c:if test="${f4 == 2}">selected</c:if>>2</option>
+                            <option value="3" <c:if test="${f4 == 3}">selected</c:if>>3</option>
+                            <option value="4" <c:if test="${f4 == 4}">selected</c:if>>4</option>
+                            <option value="5" <c:if test="${f4 == 5}">selected</c:if>>5</option>
                         </select>
                     </div>
 
