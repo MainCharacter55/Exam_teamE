@@ -142,6 +142,23 @@ public class ClassNumDao extends Dao {
 		return count > 0;
 	}
 
+	public boolean delete(String classNum, School school) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		int count = 0;
+		try {
+			statement = connection.prepareStatement(
+				"DELETE FROM class_num WHERE class_num=? AND school_cd=?");
+			statement.setString(1, classNum);
+			statement.setString(2, school.getCd());
+			count = statement.executeUpdate();
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+		return count > 0;
+	}
+
 	/**
 	 * saveメソッド：既存のクラス番号を新しいクラス番号で更新する
 	 */
