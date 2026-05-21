@@ -57,6 +57,10 @@
                 </div>
             </form>
 
+            <c:if test="${not empty searchError}">
+                <div class="ms-3 mt-2 text-warning fw-bold">${searchError}</div>
+            </c:if>
+
             <c:if test="${isSearchPerformed}">
                 <c:choose>
                     <c:when test="${not empty regist_list}">

@@ -50,6 +50,17 @@ public class TestRegistSearchAction extends Action {
         request.setAttribute("f2", f2);
         request.setAttribute("f3", f3);
         request.setAttribute("f4", f4);
+
+        // 全項目の入力チェック
+        boolean valid = f1 != 0 && f2 != null && !f2.isEmpty()
+                     && f3 != null && !f3.isEmpty() && f4 != 0;
+
+        if (!valid) {
+            request.setAttribute("searchError", "入学年度・クラス・科目・回数をすべて選択してください");
+            request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+            return null;
+        }
+
         request.setAttribute("isSearchPerformed", true);
 
         Subject subject = subjectDao.get(f3, teacher.getSchool());
