@@ -51,6 +51,10 @@ public class StudentListAction extends Action {
 			entYearSet.add(i);
 		}
 		
+		if (isAttendStr != null) {
+			isAttend = true;
+		}
+
 		List<String> list = cNumDao.filter(teacher.getSchool());
 		if (entYear != 0 && !classNum.equals("0")) {
 			students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
@@ -63,11 +67,10 @@ public class StudentListAction extends Action {
 			request.setAttribute("errors", errors);
 			students = sDao.filter(teacher.getSchool(), isAttend);
 		}
-		
+
 		request.setAttribute("f1", entYear);
 		request.setAttribute("f2", classNum);
 		if (isAttendStr != null) {
-			isAttend = true;
 			request.setAttribute("f3", isAttendStr);
 		}
 		request.setAttribute("students", students);

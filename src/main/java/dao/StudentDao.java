@@ -85,7 +85,7 @@ public class StudentDao extends Dao {
 		String order = "order by no asc";
 		String conditionIsAttend = "";
 		if (isAttend) {
-			conditionIsAttend = "and is_attend=true";
+			conditionIsAttend = "and is_attend=true ";
 		}
 		try {
 			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend + order);
@@ -124,7 +124,7 @@ public class StudentDao extends Dao {
 		String order = "order by no asc";
 		String conditionIsAttend = "";
 		if (isAttend) {
-			conditionIsAttend = "and is_attend=true";
+			conditionIsAttend = "and is_attend=true ";
 		}
 		try {
 			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend + order);
@@ -161,7 +161,7 @@ public class StudentDao extends Dao {
 		String order = "order by no asc";
 		String conditionIsAttend = "";
 		if (isAttend) {
-			conditionIsAttend = "and is_attend=true";
+			conditionIsAttend = "and is_attend=true ";
 		}
 		try {
 			statement = connection.prepareStatement(baseSql + conditionIsAttend + order);
