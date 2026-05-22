@@ -68,15 +68,36 @@ public class StudentListAction extends Action {
 			students = sDao.filter(teacher.getSchool(), isAttend);
 		}
 
+		// ページネーション
+		int pageSize = 15;
+		int totalCount = students.size();
+		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		if (totalPages == 0) totalPages = 1;
+
+		int page = 1;
+		String pageStr = request.getParameter("page");
+		if (pageStr != null && !pageStr.isEmpty()) {
+			page = Integer.parseInt(pageStr);
+		}
+		if (page < 1) page = 1;
+		if (page > totalPages) page = totalPages;
+
+		int fromIndex = (page - 1) * pageSize;
+		int toIndex = Math.min(fromIndex + pageSize, totalCount);
+		List<Student> pagedStudents = students.subList(fromIndex, toIndex);
+
 		request.setAttribute("f1", entYear);
 		request.setAttribute("f2", classNum);
 		if (isAttendStr != null) {
 			request.setAttribute("f3", isAttendStr);
 		}
-		request.setAttribute("students", students);
+		request.setAttribute("students", pagedStudents);
+		request.setAttribute("totalCount", totalCount);
+		request.setAttribute("page", page);
+		request.setAttribute("totalPages", totalPages);
 		request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
-		
+
 		request.getRequestDispatcher("student_list.jsp").forward(request, response);
 		return isAttendStr;
 	}

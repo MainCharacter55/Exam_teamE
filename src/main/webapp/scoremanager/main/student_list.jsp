@@ -55,8 +55,8 @@
 			</form>
 			
 			<c:choose>
-				<c:when test="${students.size() > 0}">
-					<div>検索結果：${students.size()}件</div>
+				<c:when test="${totalCount > 0}">
+					<div class="ms-3 mb-2">検索結果：${totalCount}件</div>
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>
@@ -65,9 +65,8 @@
 							<th>クラス</th>
 							<th class="text-center">在学中</th>
 							<th></th>
-							<th></th>
 						</tr>
-						
+
 						<c:forEach var="student" items="${students}">
 							<tr>
 								<td>${student.entYear}</td>
@@ -75,24 +74,39 @@
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
 								<td class="text-center">
-									<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
 									<c:choose>
-										<c:when test="${student.isAttend()}">
-											○
-										</c:when>
-										<c:otherwise>
-											×
-										</c:otherwise>
+										<c:when test="${student.isAttend()}">○</c:when>
+										<c:otherwise>×</c:otherwise>
 									</c:choose>
 								</td>
 								<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
 							</tr>
 						</c:forEach>
 					</table>
+
+					<%-- ページネーション --%>
+					<c:if test="${totalPages > 1}">
+						<c:set var="baseUrl" value="StudentList.action?f1=${f1}&f2=${f2}${not empty f3 ? '&f3=t' : ''}"/>
+						<nav class="ms-3 mt-2">
+							<ul class="pagination">
+								<li class="page-item ${page == 1 ? 'disabled' : ''}">
+									<a class="page-link" href="${baseUrl}&page=${page - 1}">前へ</a>
+								</li>
+								<c:forEach var="i" begin="1" end="${totalPages}">
+									<li class="page-item ${i == page ? 'active' : ''}">
+										<a class="page-link" href="${baseUrl}&page=${i}">${i}</a>
+									</li>
+								</c:forEach>
+								<li class="page-item ${page == totalPages ? 'disabled' : ''}">
+									<a class="page-link" href="${baseUrl}&page=${page + 1}">次へ</a>
+								</li>
+							</ul>
+						</nav>
+					</c:if>
 				</c:when>
-				
+
 				<c:otherwise>
-					<div>学生情報が存在しませんでした。</div>
+					<div class="ms-3">学生情報が存在しませんでした。</div>
 				</c:otherwise>
 			</c:choose>
 		</section>
